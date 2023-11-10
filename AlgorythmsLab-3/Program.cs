@@ -1,9 +1,12 @@
 ﻿using AlgorythmsLab_3;
+using OfficeOpenXml;
 
 class Program
 {
     static void Main()
     {
+        ExcelPackage.LicenseContext = LicenseContext.Commercial;
+
         Console.WriteLine("Выберите структуру данных:");
         Console.WriteLine("1. Стек");
         Console.WriteLine("2. Очередь");
@@ -17,6 +20,18 @@ class Program
             if (!File.Exists(fileName))
             {
                 File.Create(fileName).Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при проверке или создании файла: {ex.Message}");
+        }
+        string fileName2 = "inputStack.txt";
+        try
+        {
+            if (!File.Exists(fileName2))
+            {
+                File.Create(fileName2).Close();
             }
         }
         catch (Exception ex)

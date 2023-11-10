@@ -26,7 +26,6 @@ namespace AlgorythmsLab_3
         {
             if (IsEmpty())
             {
-                Console.WriteLine("Стек пуст. Невозможно выполнить операцию.");
                 return default(T);
             }
 
@@ -41,7 +40,6 @@ namespace AlgorythmsLab_3
         {
             if (IsEmpty())
             {
-                Console.WriteLine("Top: Стек пуст. Невозможно выполнить операцию.");
                 return default(T);
             }
 
@@ -53,22 +51,37 @@ namespace AlgorythmsLab_3
             return top == null;
         }
 
-        public void Print()
+        public void Print(bool printToConsole = true)
         {
             if (IsEmpty())
             {
-                Console.WriteLine("Print: Стек пуст.");
+                if (printToConsole)
+                {
+                    Console.WriteLine("Print: Стек пуст.");
+                }
                 return;
             }
 
             Node<T> current = top;
-            Console.Write("Print: ");
+
+            if (printToConsole)
+            {
+                Console.Write("Print: ");
+            }
+
             while (current != null)
             {
-                Console.Write($"{current.Data} ");
+                if (printToConsole)
+                {
+                    Console.Write($"{current.Data} ");
+                }
                 current = current.Next;
             }
-            Console.WriteLine();
+
+            if (printToConsole)
+            {
+                Console.WriteLine();
+            }
         }
     }
 

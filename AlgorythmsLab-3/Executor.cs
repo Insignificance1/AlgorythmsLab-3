@@ -1,9 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
 
 namespace AlgorythmsLab_3
 {
@@ -85,7 +87,83 @@ namespace AlgorythmsLab_3
                 Console.WriteLine();
             }
         }
+        public static void ExecuteStackOperationsFromFile()  // Задание 1.3
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string outputFilePath = Path.Combine(desktopPath, "Стек(замер).xlsx");
 
+            List<Tuple<int, double>> results = new List<Tuple<int, double>>();
+
+            for (int size = 10; size <= 1000; size += 10)
+            {
+                Console.WriteLine($"Размер стека: {size}");
+
+                Generate.GenerateInputStackFile(size);
+
+                CustomStack<object> stack = new CustomStack<object>();
+                OperationTimer timer = new OperationTimer();
+                timer.Start();
+
+                try
+                {
+                    string[] operations = File.ReadAllText("inputStack.txt").Split(' ');
+
+                    for (int i = 0; i < operations.Length - 1; i++)
+                    {
+                        int op = int.Parse(operations[i]);
+
+                        switch (op)
+                        {
+                            case 1:
+                                if (i + 1 < operations.Length)
+                                {
+                                    i++;
+                                    object element = operations[i];
+                                    stack.Push(element);
+                                }
+                                break;
+
+                            case 2:
+                                object poppedItem = stack.Pop();
+                                break;
+
+                            case 3:
+                                object topItem = stack.Top();
+                                break;
+
+                            case 4:
+                                bool isEmpty = stack.IsEmpty();
+                                break;
+
+                            case 5:
+                                stack.Print(false);
+                                break;
+
+                            default:
+                                Console.WriteLine("Неверная операция");
+                                break;
+                        }
+                    }
+
+                    TimeSpan elapsedTotal = timer.Stop();
+                    results.Add(new Tuple<int, double>(size, elapsedTotal.TotalMilliseconds));
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("Файл inputStack.txt не найден.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка выполнения операций: {ex.Message}");
+                }
+            }
+
+            // Передача результатов в ExcelWriter
+            ExcelWriter.WriteToExcel(results, outputFilePath);
+        }
     }
+
 }
+
+
 

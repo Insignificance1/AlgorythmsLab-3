@@ -43,6 +43,25 @@ namespace AlgorythmsLab_3
                 return words[random.Next(words.Length)];
             }
         }
+
+        public static void GenerateInputStackFile(int size)
+        {
+            Random random = new Random();
+
+            using (StreamWriter writer = new StreamWriter("inputStack.txt"))
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    int operation = random.Next(1, 6);
+                    writer.Write($"{operation} ");
+
+                    if (operation == 1)
+                    {
+                        writer.Write($"{GenerateRandomValue(random)} ");
+                    }
+                }
+            }
+        }
     }
 
 }

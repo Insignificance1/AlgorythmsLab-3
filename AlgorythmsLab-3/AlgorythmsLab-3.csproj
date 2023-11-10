@@ -8,4 +8,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EcoWindowsForms" Version="7.0.0.15158" />
+    <PackageReference Include="EPPlus" Version="7.0.1" />
+  </ItemGroup>
+
 </Project>

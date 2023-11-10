@@ -25,7 +25,7 @@ namespace AlgorythmsLab_3
                     Executor.ExecuteStackOperations();
                     break;
                 case 2:
-                    // Реализация задания 2 для стека
+                    Executor.ExecuteStackOperationsFromFile();
                     break;
                 case 3:
                     // Реализация задания 3 для стека
