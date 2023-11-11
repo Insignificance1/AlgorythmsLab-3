@@ -3,17 +3,14 @@ using OfficeOpenXml;
 
 class Program
 {
-    static void Main()
+    public static void Main()
     {
         ExcelPackage.LicenseContext = LicenseContext.Commercial;
 
-        Console.WriteLine("Выберите структуру данных:");
-        Console.WriteLine("1. Стек");
-        Console.WriteLine("2. Очередь");
-        Console.WriteLine("3. Динамические структуры");
-        Console.WriteLine("4. Лист");
+        MenuManager.ShowMainMenu();
 
-        int structureChoice = int.Parse(Console.ReadLine());
+        int structureChoice = MenuManager.GetMenuChoice();
+
         string fileName = "input.txt";
         try
         {

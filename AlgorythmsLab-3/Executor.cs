@@ -86,6 +86,8 @@ namespace AlgorythmsLab_3
 
                 Console.WriteLine();
             }
+            Console.WriteLine();
+            MenuManager.ReturnToMainMenu();
         }
         public static void ExecuteStackOperationsFromFile()  // Задание 1.3
         {
@@ -160,6 +162,7 @@ namespace AlgorythmsLab_3
 
             // Передача результатов в ExcelWriter
             ExcelWriter.WriteToExcel(results, outputFilePath);
+            MenuManager.ReturnToMainMenu();
         }
     }
 
