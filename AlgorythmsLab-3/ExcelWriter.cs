@@ -12,7 +12,7 @@ namespace AlgorythmsLab_3
 {
     public class ExcelWriter
     {
-        public static void WriteToExcel(List<Tuple<int, double>> results, string filePath)
+        public static void WriteToExcel(List<Tuple<int, double>> results, string filePath, string chartName)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -34,7 +34,7 @@ namespace AlgorythmsLab_3
                 }
 
                 // Создание графика
-                AddChart(worksheet, "ResultsChart", "Количество операций", "Время (миллисекунды)", results.Count + 1);
+                AddChart(worksheet, chartName, "Количество операций", "Время (миллисекунды)", results.Count + 1);
 
                 // Сохранение файла
                 package.Save();
@@ -44,7 +44,7 @@ namespace AlgorythmsLab_3
         private static void AddChart(ExcelWorksheet worksheet, string chartName, string titleX, string titleY, int rowCount)
         {
             var chart = worksheet.Drawings.AddChart(chartName, eChartType.LineMarkers);
-            chart.Title.Text = "Стек - График выполнения операций";
+            chart.Title.Text = chartName;
             chart.SetPosition(2, 0, 4, 0);
             chart.SetSize(1200, 600);
 

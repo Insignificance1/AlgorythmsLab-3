@@ -35,11 +35,11 @@ namespace AlgorythmsLab_3
                     break;
                 case 4:
                     Console.Clear();
-                    Executor.RunInfixToPostfixTask();
+                    Executor.ExecuteInfixToPostfixTask();
                     break;
                 case 5:
                     Console.Clear();
-                    // Реализация задания 5 для стека
+                    Executor.ExecuteStackOperationsWithBuiltInStack();
                     break;
                 default:
                     Console.WriteLine("Введите номер от 1 до 5!");
