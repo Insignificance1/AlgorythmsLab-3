@@ -22,21 +22,17 @@ namespace AlgorythmsLab_3
             {
                 var worksheet = package.Workbook.Worksheets.Add("Results");
 
-                // Запись заголовков
                 worksheet.Cells[1, 1].Value = "Количество операций";
                 worksheet.Cells[1, 2].Value = "Время (миллисекунды)";
 
-                // Запись результатов в ячейки
                 for (int i = 0; i < results.Count; i++)
                 {
                     worksheet.Cells[i + 2, 1].Value = results[i].Item1;
                     worksheet.Cells[i + 2, 2].Value = results[i].Item2;
                 }
 
-                // Создание графика
                 AddChart(worksheet, chartName, "Количество операций", "Время (миллисекунды)", results.Count + 1);
 
-                // Сохранение файла
                 package.Save();
             }
         }

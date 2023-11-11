@@ -10,7 +10,6 @@ namespace AlgorythmsLab_3
     {
         public static void GenerateInputFile()
         {
-            // Генерация содержимого файла input.txt
             Random random = new Random();
             int operationsCount = random.Next(5, 15);
 
@@ -23,7 +22,6 @@ namespace AlgorythmsLab_3
 
                     if (operation == 1)
                     {
-                        // Для операции Push добавляем случайное значение
                         writer.Write($"{GenerateRandomValue(random)} ");
                     }
                 }
@@ -32,10 +30,9 @@ namespace AlgorythmsLab_3
 
         private static object GenerateRandomValue(Random random)
         {
-            // Генерация случайного значения (числа или слова)
             if (random.Next(2) == 0)
             {
-                return random.Next(1, 101); // Генерация случайного числа от 1 до 100
+                return random.Next(1, 101); 
             }
             else
             {
@@ -69,11 +66,35 @@ namespace AlgorythmsLab_3
 
             for (int i = 0; i < size; i++)
             {
-                myList.AddToFront(random.Next(1, 101)); // Генерация случайного числа от 1 до 100
+                myList.AddToFront(random.Next(1, 101)); 
+            }
+
+            return myList;
+        }
+        public static CustomLinkedList<int> GenerateRandomSortedLinkedList(int length)
+        {
+            CustomLinkedList<int> list = new CustomLinkedList<int>();
+
+            Random random = new Random();
+
+            for (int i = 0; i < length; i++)
+            {
+                list.InsertOrdered(random.Next(1, 100));
+            }
+
+            return list;
+        }
+        public static CustomLinkedList<int> GenerateRandomLowValuesLinkedList(int size)
+        {
+            CustomLinkedList<int> myList = new CustomLinkedList<int>();
+            Random random = new Random();
+
+            for (int i = 0; i < size; i++)
+            {
+                myList.AddToFront(random.Next(1, 11));
             }
 
             return myList;
         }
     }
-
 }

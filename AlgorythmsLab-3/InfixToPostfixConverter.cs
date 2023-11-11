@@ -10,7 +10,6 @@ namespace AlgorythmsLab_3
     {
         public static string ConvertToPostfix(string infixExpression)
         {
-            // Используем стек для хранения операторов и функций
             CustomStack<string> operatorStack = new CustomStack<string>();
 
             // Используем StringBuilder для формирования выражения

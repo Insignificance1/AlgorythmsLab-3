@@ -147,23 +147,23 @@ namespace AlgorythmsLab_3
                         break;
                     case 4:
                         Console.Clear();
-                        Executor.ExecuteRemoveNonUniqueElements();
+                        Executor.RemoveNonUniqueElements();
                         break;
                     case 5:
                         Console.Clear();
-                        // Реализация задания 5 для листа
+                        Executor.InsertYourself();
                         break;
                     case 6:
                         Console.Clear();
-                        // Реализация задания 6 для листа
+                        Executor.InsertOrdered();
                         break;
                     case 7:
                         Console.Clear();
-                        // Реализация задания 7 для листа
+                        Executor.RemoveAllOccurrences();
                         break;
                     case 8:
                         Console.Clear();
-                        // Реализация задания 8 для листа
+                        Executor.InsertBeforeFirstOccurrence();
                         break;
                     case 9:
                         Console.Clear();

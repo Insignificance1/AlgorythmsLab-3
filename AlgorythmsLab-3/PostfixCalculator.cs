@@ -44,16 +44,12 @@ namespace AlgorythmsLab_3
 
         private static bool IsOperator(string token)
         {
-            // Ваша логика определения операторов
-            // Например, можно проверить, что token является одним из допустимых операторов
             string[] operators = { "+", "-", "*", "/", "^", "ln", "cos", "sin", "sqrt", "!" };
             return operators.Contains(token);
         }
 
         private static double PerformOperation(string operatorToken, double operand1, double operand2)
         {
-            // Ваша логика выполнения операций
-            // Например, можно использовать switch для различных операторов
             switch (operatorToken)
             {
                 case "+":
