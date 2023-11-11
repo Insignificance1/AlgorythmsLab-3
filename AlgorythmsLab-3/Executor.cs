@@ -229,6 +229,31 @@ namespace AlgorythmsLab_3
         {
             return "+-*/^".Contains(ch);
         }
+
+        public static void RunInfixToPostfixTask()
+        {
+            Console.WriteLine("Задание 1.5 - Перевод из инфиксной в постфиксную запись");
+            Console.WriteLine("Введите инфиксное выражение:");
+
+            string infixExpression = Console.ReadLine();
+
+            try
+            {
+                string postfixExpression = InfixToPostfixConverter.ConvertToPostfix(infixExpression);
+                Console.WriteLine("");
+                Console.WriteLine($"Постфиксное: {postfixExpression}");
+
+                // Теперь передаем постфиксное выражение в наш класс для вычисления
+                double result = PostfixCalculator.PostfixCalculate(postfixExpression);
+                Console.WriteLine($"Результат: {result}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            MenuManager.ReturnToMainMenu();
+        }
+
     }
 
 }

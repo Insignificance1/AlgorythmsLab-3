@@ -35,7 +35,7 @@ namespace AlgorythmsLab_3
                     break;
                 case 4:
                     Console.Clear();
-                    // Реализация задания 4 для стека
+                    Executor.RunInfixToPostfixTask();
                     break;
                 case 5:
                     Console.Clear();

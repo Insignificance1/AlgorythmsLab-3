@@ -10,6 +10,7 @@ namespace AlgorythmsLab_3
             CustomStack<double> stack = new CustomStack<double>();
 
             string[] tokens = expression.Split(' ');
+            double operand1 = 0;
 
             foreach (string token in tokens)
             {
@@ -20,13 +21,12 @@ namespace AlgorythmsLab_3
                 else if (IsOperator(token))
                 {
                     double operand2 = stack.Pop();
-                    double operand1 = stack.Pop();
+                    if (!stack.IsEmpty())
+                    {
+                        operand1 = stack.Pop();
+                    }
                     double result = PerformOperation(token, operand1, operand2);
                     stack.Push(result);
-                    if (token != "+" && token != "-")
-                    {
-                        stack.Push(result);
-                    }
                 }
                 else
                 {
@@ -69,14 +69,18 @@ namespace AlgorythmsLab_3
                 case "ln":
                     return Math.Log(operand2);
                 case "cos":
-                    return Math.Cos(operand2);
+                    return Math.Cos(DegreesToRadians(operand2));
                 case "sin":
-                    return Math.Sin(operand2);
+                    return Math.Sin(DegreesToRadians(operand2));
                 case "sqrt":
                     return Math.Sqrt(operand2);
                 default:
                     throw new ArgumentException($"Неизвестный оператор: {operatorToken}");
             }
+        }
+        private static double DegreesToRadians(double degrees)
+        {
+            return degrees * Math.PI / 180.0;
         }
     }
 }
