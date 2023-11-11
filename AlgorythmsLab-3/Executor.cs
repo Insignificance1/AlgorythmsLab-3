@@ -254,7 +254,7 @@ namespace AlgorythmsLab_3
             MenuManager.ReturnToMainMenu();
         }
 
-        public static void ExecuteStackOperationsWithBuiltInStack()
+        public static void ExecuteStackOperationsWithBuiltInStack() // Задание 1.6
         {
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string outputFilePath = Path.Combine(desktopPath, "Stack - График выполнения операци.xlsx");
@@ -339,6 +339,113 @@ namespace AlgorythmsLab_3
             ExcelWriter.WriteToExcel(results, outputFilePath, chartName);
             MenuManager.ReturnToMainMenu();
         }
+
+        public static void ReverseLinkedList() // Задание 4.1
+        {
+            Console.WriteLine("Задание 4.1 - Функция, которая переворачивает список L.");
+            try
+            {
+                // Генерируем связанный список со случайными значениями
+                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(10);
+
+                // Выводим исходный список
+                Console.WriteLine("Исходный список:");
+                myList.Print();
+
+                // Переворачиваем список
+                myList.Reverse();
+
+                // Выводим перевернутый список
+                Console.WriteLine("Перевернутый список:");
+                myList.Print();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            finally
+            {
+                MenuManager.ReturnToMainMenu();
+            }
+        }
+        public static void MoveLastToFrontToLast() // Задание 4.2
+        {
+            Console.WriteLine("Задание 4.2 - Функция, меняет местами первый и последний элемент.");
+            try
+            {
+                // Генерируем связанный список со случайными значениями
+                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(5);
+
+                // Выводим исходный список
+                Console.WriteLine("Исходный список:");
+                myList.Print();
+
+                // Меняем местами первый и последний элементы
+                myList.MoveFirstAndLast();
+
+                // Выводим обновленный список
+                Console.WriteLine("Список после перемещения первого и последнего элементов:");
+                myList.Print();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            finally
+            {
+                MenuManager.ReturnToMainMenu();
+            }
+        }
+        public static void DistinctElementsCount() //Задание 4.3
+        {
+            Console.WriteLine("Задание 4.3 - Функция, которая определяет количество различных элементов списка.");
+            try
+            {
+                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(10);
+
+                Console.WriteLine("Исходный список:");
+                myList.Print();
+
+                int distinctCount = myList.CountDistinctElements();
+
+                Console.WriteLine($"Количество различных элементов в списке: {distinctCount}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            finally
+            {
+                MenuManager.ReturnToMainMenu();
+            }
+        }
+
+        public static void ExecuteRemoveNonUniqueElements() // Задание 4.4
+        {
+            Console.WriteLine("Задание 4.3 - Функция, которая удаляет из списка неуникальные элементы.");
+
+            try
+            {
+                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(40);
+
+                Console.WriteLine("Исходный список:");
+                myList.Print();
+
+                myList.RemoveNonUniqueElements();
+
+                Console.WriteLine("Список после удаления неуникальных элементов:");
+                myList.Print();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            finally
+            {
+                MenuManager.ReturnToMainMenu();
+            }
+        }
+
     }
 
 }

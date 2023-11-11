@@ -18,19 +18,21 @@ namespace AlgorythmsLab_3
         {
             Console.WriteLine("Введите 1, чтобы вернуться в главное меню.");
             Console.WriteLine("Введите 2, чтобы завершить программу.");
-            int returnChoice = GetMenuChoice();
-            if (returnChoice == 1)
+            while (true)
             {
-                Program.Main(); // Вызываем метод Main из класса Program
-            }
-            else if (returnChoice == 2)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.WriteLine("Некорректный выбор. Программа будет завершена.");
-                Environment.Exit(0); // Выход из программы
+                int choice = GetMenuChoice();
+                switch (choice)
+                {
+                    case 1:
+                        Program.Main();
+                        break;
+                    case 2:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Введите номер от 1 до 2!");
+                        break;
+                }
             }
         }
 

@@ -62,6 +62,18 @@ namespace AlgorythmsLab_3
                 }
             }
         }
+        public static CustomLinkedList<int> GenerateRandomLinkedList(int size)
+        {
+            CustomLinkedList<int> myList = new CustomLinkedList<int>();
+            Random random = new Random();
+
+            for (int i = 0; i < size; i++)
+            {
+                myList.AddToFront(random.Next(1, 101)); // Генерация случайного числа от 1 до 100
+            }
+
+            return myList;
+        }
     }
 
 }

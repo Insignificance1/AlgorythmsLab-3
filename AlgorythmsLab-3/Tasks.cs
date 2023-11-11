@@ -17,33 +17,36 @@ namespace AlgorythmsLab_3
             Console.WriteLine("4. Перевод из инфиксной записи в постфиксную запись");
             Console.WriteLine("5. Запуск с замером времени различных наборов операций из файла input.txt, для встроенного класса Stack в C#");
 
-            int choice = int.Parse(Console.ReadLine());
-
-            switch (choice)
+            while (true)
             {
-                case 1:
-                    Console.Clear();
-                    Executor.ExecuteStackOperations();
-                    break;
-                case 2:
-                    Console.Clear();
-                    Executor.ExecuteStackOperationsFromFile();
-                    break;
-                case 3:
-                    Console.Clear();
-                    Executor.ExecutePostfixCalculation();
-                    break;
-                case 4:
-                    Console.Clear();
-                    Executor.ExecuteInfixToPostfixTask();
-                    break;
-                case 5:
-                    Console.Clear();
-                    Executor.ExecuteStackOperationsWithBuiltInStack();
-                    break;
-                default:
-                    Console.WriteLine("Введите номер от 1 до 5!");
-                    break;
+                int choice = MenuManager.GetMenuChoice();
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.Clear();
+                        Executor.ExecuteStackOperations();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Executor.ExecuteStackOperationsFromFile();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        Executor.ExecutePostfixCalculation();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        Executor.ExecuteInfixToPostfixTask();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        Executor.ExecuteStackOperationsWithBuiltInStack();
+                        break;
+                    default:
+                        Console.WriteLine("Введите номер от 1 до 5!");
+                        continue;
+                }
             }
         }
 
@@ -53,19 +56,25 @@ namespace AlgorythmsLab_3
             Console.WriteLine("1. Запуск различных наборов операций из файла input.txt с выводом на экран");
             Console.WriteLine("2. Запуск с замером времени различных наборов операций из файла input.txt.");
 
-            int choice = int.Parse(Console.ReadLine());
-
-            switch (choice)
+            while (true) 
             {
-                case 1:
-                    // Реализация задания 1 для очереди
-                    break;
-                case 2:
-                    // Реализация задания 2 для очереди
-                    break;
-                default:
-                    Console.WriteLine("Неверный выбор");
-                    break;
+                int choice = MenuManager.GetMenuChoice();
+
+                switch (choice)
+                {
+                    case 1:
+                        // Реализация задания 1 для очереди
+                        break;
+                    case 2:
+                        // Реализация задания 2 для очереди
+                        break;
+                    case 3:
+                        // Реализация задания 3 для очереди
+                        break;
+                    default:
+                        Console.WriteLine("Неверный выбор");
+                        continue;
+                }
             }
         }
 
@@ -77,25 +86,28 @@ namespace AlgorythmsLab_3
             Console.WriteLine("3. Пример использования структуры данных Очередь");
             Console.WriteLine("4. Пример использования структуры данных Дерево");
 
-            int choice = int.Parse(Console.ReadLine());
-
-            switch (choice)
+            while (true)
             {
-                case 1:
-                    // Реализация задания 1 для динамических структур данных (Список)
-                    break;
-                case 2:
-                    // Реализация задания 2 для динамических структур данных (Стек)
-                    break;
-                case 3:
-                    // Реализация задания 3 для динамических структур данных (Очередь)
-                    break;
-                case 4:
-                    // Реализация задания 4 для динамических структур данных (Дерево)
-                    break;
-                default:
-                    Console.WriteLine("Неверный выбор");
-                    break;
+                int choice = MenuManager.GetMenuChoice();
+
+                switch (choice)
+                {
+                    case 1:
+                        // Реализация задания 1 для динамических структур данных (Список)
+                        break;
+                    case 2:
+                        // Реализация задания 2 для динамических структур данных (Стек)
+                        break;
+                    case 3:
+                        // Реализация задания 3 для динамических структур данных (Очередь)
+                        break;
+                    case 4:
+                        // Реализация задания 4 для динамических структур данных (Дерево)
+                        break;
+                    default:
+                        Console.WriteLine("Введите номер от 1 до 4!");
+                        continue;
+                }
             }
         }
 
@@ -115,51 +127,66 @@ namespace AlgorythmsLab_3
             Console.WriteLine("11. Удвоить список");
             Console.WriteLine("12. Переставить элементы");
 
-            int choice = int.Parse(Console.ReadLine());
-
-            switch (choice)
+            while (true)
             {
-                case 1:
-                    // Реализация задания 1 для листа
-                    break;
-                case 2:
-                    // Реализация задания 2 для листа
-                    break;
-                case 3:
-                    // Реализация задания 3 для листа
-                    break;
-                case 4:
-                    // Реализация задания 4 для листа
-                    break;
-                case 5:
-                    // Реализация задания 5 для листа
-                    break;
-                case 6:
-                    // Реализация задания 6 для листа
-                    break;
-                case 7:
-                    // Реализация задания 7 для листа
-                    break;
-                case 8:
-                    // Реализация задания 8 для листа
-                    break;
-                case 9:
-                    // Реализация задания 9 для листа
-                    break;
-                case 10:
-                    // Реализация задания 10 для листа
-                    break;
-                case 11:
-                    // Реализация задания 11 для листа
-                    break;
-                case 12:
-                    // Реализация задания 12 для листа
-                    break;
-                default:
-                    Console.WriteLine("Неверный выбор");
-                    break;
+                int choice = MenuManager.GetMenuChoice(); 
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.Clear();
+                        Executor.ReverseLinkedList();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Executor.MoveLastToFrontToLast(); 
+                        break;
+                    case 3:
+                        Console.Clear();
+                        Executor.DistinctElementsCount();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        Executor.ExecuteRemoveNonUniqueElements();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        // Реализация задания 5 для листа
+                        break;
+                    case 6:
+                        Console.Clear();
+                        // Реализация задания 6 для листа
+                        break;
+                    case 7:
+                        Console.Clear();
+                        // Реализация задания 7 для листа
+                        break;
+                    case 8:
+                        Console.Clear();
+                        // Реализация задания 8 для листа
+                        break;
+                    case 9:
+                        Console.Clear();
+                        // Реализация задания 9 для листа
+                        break;
+                    case 10:
+                        Console.Clear();
+                        // Реализация задания 10 для листа
+                        break;
+                    case 11:
+                        Console.Clear();
+                        // Реализация задания 11 для листа
+                        break;
+                    case 12:
+                        Console.Clear();
+                        // Реализация задания 12 для листа
+                        break;
+                    default:
+                        Console.WriteLine("Введите номер от 1 до 12!");
+                        continue;
+                }
             }
         }
-    }
+     }
 
 }
