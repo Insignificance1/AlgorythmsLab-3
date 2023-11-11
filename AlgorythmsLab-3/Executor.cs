@@ -164,6 +164,71 @@ namespace AlgorythmsLab_3
             ExcelWriter.WriteToExcel(results, outputFilePath);
             MenuManager.ReturnToMainMenu();
         }
+        public static void ExecutePostfixCalculation() // Задание 1.4
+        {
+            Console.WriteLine("Задание 1.4 - Вычисление в постфиксной записи");
+            Console.WriteLine("Введите выражение для вычисления:");
+
+            string expression = Console.ReadLine();
+
+            while (!IsPostfixExpressionValid(expression))
+            {
+                Console.WriteLine("Выражение введено неверно. Пожалуйста, повторите ввод:");
+                expression = Console.ReadLine();
+            }
+
+            try
+            {
+                double result = PostfixCalculator.PostfixCalculate(expression);
+                Console.WriteLine($"Выражение: {expression} = {result}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при вычислении выражения: {ex.Message}");
+            }
+            MenuManager.ReturnToMainMenu();
+        }
+
+        private static bool IsPostfixExpressionValid(string expression)
+        {
+            expression = expression.Replace(" ", "");
+            if (string.IsNullOrWhiteSpace(expression))
+            {
+                return false;
+            }
+
+            if (expression.Length < 3)
+            {
+                return false;
+            }
+
+            bool hasOperand = false;
+            bool hasOperation = false;
+
+            foreach (char ch in expression)
+            {
+                if (char.IsDigit(ch))
+                {
+                    hasOperand = true;
+                }
+                else if (IsOperator(ch))
+                {
+                    hasOperation = true;
+                }
+
+                if (hasOperand && hasOperation)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsOperator(char ch)
+        {
+            return "+-*/^".Contains(ch);
+        }
     }
 
 }

@@ -10,9 +10,17 @@ namespace AlgorythmsLab_3
     {
         private Node<T> top;
 
+        private LinkedList<T> items;
+
         public CustomStack()
         {
             top = null;
+            items = new LinkedList<T>();
+        }
+
+        public int Size
+        {
+            get { return items.Count; }
         }
 
         public void Push(T element)

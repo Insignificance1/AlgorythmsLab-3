@@ -22,18 +22,23 @@ namespace AlgorythmsLab_3
             switch (choice)
             {
                 case 1:
+                    Console.Clear();
                     Executor.ExecuteStackOperations();
                     break;
                 case 2:
+                    Console.Clear();
                     Executor.ExecuteStackOperationsFromFile();
                     break;
                 case 3:
-                    // Реализация задания 3 для стека
+                    Console.Clear();
+                    Executor.ExecutePostfixCalculation();
                     break;
                 case 4:
+                    Console.Clear();
                     // Реализация задания 4 для стека
                     break;
                 case 5:
+                    Console.Clear();
                     // Реализация задания 5 для стека
                     break;
                 default:

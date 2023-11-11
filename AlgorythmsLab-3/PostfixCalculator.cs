@@ -1,0 +1,82 @@
+﻿using System;
+using System.Linq;
+
+namespace AlgorythmsLab_3
+{
+    public static class PostfixCalculator
+    {
+        public static double PostfixCalculate(string expression)
+        {
+            CustomStack<double> stack = new CustomStack<double>();
+
+            string[] tokens = expression.Split(' ');
+
+            foreach (string token in tokens)
+            {
+                if (IsNumeric(token))
+                {
+                    stack.Push(double.Parse(token));
+                }
+                else if (IsOperator(token))
+                {
+                    double operand2 = stack.Pop();
+                    double operand1 = stack.Pop();
+                    double result = PerformOperation(token, operand1, operand2);
+                    stack.Push(result);
+                    if (token != "+" && token != "-")
+                    {
+                        stack.Push(result);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException($"Некорректный токен в постфиксном выражении: {token}");
+                }
+            }
+
+            return stack.Pop();
+        }
+
+        private static bool IsNumeric(string token)
+        {
+            return double.TryParse(token, out _);
+        }
+
+        private static bool IsOperator(string token)
+        {
+            // Ваша логика определения операторов
+            // Например, можно проверить, что token является одним из допустимых операторов
+            string[] operators = { "+", "-", "*", "/", "^", "ln", "cos", "sin", "sqrt", "!" };
+            return operators.Contains(token);
+        }
+
+        private static double PerformOperation(string operatorToken, double operand1, double operand2)
+        {
+            // Ваша логика выполнения операций
+            // Например, можно использовать switch для различных операторов
+            switch (operatorToken)
+            {
+                case "+":
+                    return operand1 + operand2;
+                case "-":
+                    return operand1 - operand2;
+                case "*":
+                    return operand1 * operand2;
+                case "/":
+                    return operand1 / operand2;
+                case "^":
+                    return Math.Pow(operand1, operand2);
+                case "ln":
+                    return Math.Log(operand2);
+                case "cos":
+                    return Math.Cos(operand2);
+                case "sin":
+                    return Math.Sin(operand2);
+                case "sqrt":
+                    return Math.Sqrt(operand2);
+                default:
+                    throw new ArgumentException($"Неизвестный оператор: {operatorToken}");
+            }
+        }
+    }
+}
