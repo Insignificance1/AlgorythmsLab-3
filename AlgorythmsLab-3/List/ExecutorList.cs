@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlgorythmsLab_3.Utilities;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.List
 {
     public class ExecutorList
     {

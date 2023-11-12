@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlgorythmsLab_3.List;
+using AlgorythmsLab_3.Queue;
+using AlgorythmsLab_3.Stack;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Utilities
 {
     class Tasks
     {
@@ -63,7 +66,7 @@ namespace AlgorythmsLab_3
             Console.WriteLine("4. Запуск с замером времени с файлом прогрессирующим по длине, со случайными операциями из файла input.txt, для встроенного Queue");
 
 
-            while (true) 
+            while (true)
             {
                 int choice = MenuManager.GetMenuChoice();
 
@@ -147,7 +150,7 @@ namespace AlgorythmsLab_3
 
             while (true)
             {
-                int choice = MenuManager.GetMenuChoice(); 
+                int choice = MenuManager.GetMenuChoice();
 
                 switch (choice)
                 {
@@ -157,7 +160,7 @@ namespace AlgorythmsLab_3
                         break;
                     case 2:
                         Console.Clear();
-                        ExecutorList.MoveLastToFrontToLast(); 
+                        ExecutorList.MoveLastToFrontToLast();
                         break;
                     case 3:
                         Console.Clear();
@@ -205,6 +208,6 @@ namespace AlgorythmsLab_3
                 }
             }
         }
-     }
+    }
 
 }

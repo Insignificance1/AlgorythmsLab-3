@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlgorythmsLab_3.Utilities;
 
-
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Stack
 {
     class ExecutorStack
     {
@@ -336,7 +336,7 @@ namespace AlgorythmsLab_3
             MenuManager.ReturnToMainMenu("Stack");
         }
 
-        
+
     }
 }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Utilities
 {
     class Generate
     {
@@ -32,7 +32,7 @@ namespace AlgorythmsLab_3
         {
             if (random.Next(2) == 0)
             {
-                return random.Next(1, 101); 
+                return random.Next(1, 101);
             }
             else
             {
@@ -103,7 +103,7 @@ namespace AlgorythmsLab_3
 
             for (int i = 0; i < size; i++)
             {
-                myList.AddToFront(random.Next(1, 101)); 
+                myList.AddToFront(random.Next(1, 101));
             }
 
             return myList;

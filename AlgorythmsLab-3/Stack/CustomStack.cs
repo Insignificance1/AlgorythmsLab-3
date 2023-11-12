@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Stack
 {
     class CustomStack<T>
     {
@@ -34,7 +34,7 @@ namespace AlgorythmsLab_3
         {
             if (IsEmpty())
             {
-                return default(T);
+                return default;
             }
 
             T data = top.Data;
@@ -48,7 +48,7 @@ namespace AlgorythmsLab_3
         {
             if (IsEmpty())
             {
-                return default(T);
+                return default;
             }
 
             return top.Data;

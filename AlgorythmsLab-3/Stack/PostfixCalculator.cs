@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Stack
 {
     public static class PostfixCalculator
     {

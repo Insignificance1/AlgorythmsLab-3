@@ -1,11 +1,12 @@
-﻿using Eco.Handles;
+﻿using AlgorythmsLab_3.Utilities;
+using Eco.Handles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Queue
 {
     public class ExecutorQueue
     {
@@ -272,7 +273,7 @@ namespace AlgorythmsLab_3
                                 break;
 
                             case 4:
-                                bool isEmpty = (queue.Count == 0);
+                                bool isEmpty = queue.Count == 0;
                                 break;
 
                             case 5:

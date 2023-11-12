@@ -1,4 +1,4 @@
-﻿using AlgorythmsLab_3;
+﻿using AlgorythmsLab_3.Utilities;
 using OfficeOpenXml;
 
 class Program

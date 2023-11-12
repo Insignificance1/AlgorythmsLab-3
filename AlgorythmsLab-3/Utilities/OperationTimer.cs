@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Utilities
 {
     public class OperationTimer
     {

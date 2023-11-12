@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Utilities
 {
     public static class MenuManager
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace AlgorythmsLab_3
+namespace AlgorythmsLab_3.Stack
 {
     public static class InfixToPostfixConverter
     {
