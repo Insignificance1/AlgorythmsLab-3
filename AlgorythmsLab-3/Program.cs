@@ -33,6 +33,31 @@ class Program
         {
             Console.WriteLine($"Ошибка при проверке или создании файла: {ex.Message}");
         }
+        string fileName3 = "inputQueueDifferent.txt";
+        try
+        {
+            if (!File.Exists(fileName3))
+            {
+                File.Create(fileName3).Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при проверке или создании файла: {ex.Message}");
+        }
+        string fileName4 = "inputQueue.txt";
+        try
+        {
+            if (!File.Exists(fileName4))
+            {
+                File.Create(fileName4).Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при проверке или создании файла: {ex.Message}");
+        }
+
 
         while (true)
         {

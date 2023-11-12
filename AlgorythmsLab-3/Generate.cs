@@ -59,6 +59,43 @@ namespace AlgorythmsLab_3
                 }
             }
         }
+
+        public static void GenerateInputQueueFile(int size)
+        {
+            Random random = new Random();
+
+            using (StreamWriter writer = new StreamWriter("inputQueue.txt"))
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    int operation = random.Next(1, 6);
+                    writer.Write($"{operation} ");
+
+                    if (operation == 1)
+                    {
+                        writer.Write($"{GenerateRandomValue(random)} ");
+                    }
+                }
+            }
+        }
+        public static void GenerateInputQueueDifferentFile()
+        {
+            Random random = new Random();
+
+            using (StreamWriter writer = new StreamWriter("inputQueueDifferent.txt"))
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    int operation = random.Next(1, 6);
+                    writer.Write($"{operation} ");
+
+                    if (operation == 1)
+                    {
+                        writer.Write($"{GenerateRandomValue(random)} ");
+                    }
+                }
+            }
+        }
         public static CustomLinkedList<int> GenerateRandomLinkedList(int size)
         {
             CustomLinkedList<int> myList = new CustomLinkedList<int>();

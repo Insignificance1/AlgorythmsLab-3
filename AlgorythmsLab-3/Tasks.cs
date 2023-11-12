@@ -58,7 +58,10 @@ namespace AlgorythmsLab_3
 
             Console.WriteLine("Выберите задание очереди:");
             Console.WriteLine("1. Запуск различных наборов операций из файла input.txt с выводом на экран");
-            Console.WriteLine("2. Запуск с замером времени различных наборов операций из файла input.txt.");
+            Console.WriteLine("2. Запуск с замером времени с файлом одинаковым по длине, со случайными операциями из файла input.txt.");
+            Console.WriteLine("3. Запуск с замером времени с файлом прогрессирующим по длине, со случайными операциями из файла input.txt.");
+            Console.WriteLine("4. Запуск с замером времени с файлом прогрессирующим по длине, со случайными операциями из файла input.txt, для встроенного Queue");
+
 
             while (true) 
             {
@@ -67,16 +70,23 @@ namespace AlgorythmsLab_3
                 switch (choice)
                 {
                     case 1:
-                        // Реализация задания 1 для очереди
+                        Console.Clear();
+                        ExecutorQueue.ExecuteQueueOperations();
                         break;
                     case 2:
-                        // Реализация задания 2 для очереди
+                        Console.Clear();
+                        ExecutorQueue.ExecuteQueueOperationsWithDifferentFile();
                         break;
                     case 3:
-                        // Реализация задания 3 для очереди
+                        Console.Clear();
+                        ExecutorQueue.ExecuteQueueOperationsWithFile();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        ExecutorQueue.ExecuteQueueOperationsWithQueue();
                         break;
                     default:
-                        Console.WriteLine("Неверный выбор");
+                        Console.WriteLine("Введите номер от 1 до 4!");
                         continue;
                 }
             }
