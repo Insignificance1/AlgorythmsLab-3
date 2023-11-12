@@ -190,7 +190,7 @@ public class CustomLinkedList<T>
         newNode.Next = current.Next;
         current.Next = newNode;
     }
-    public void RemoveAllOccurrences(T element)
+    public void RemoveAllOccurrences(T element) // Задание 4.7
     {
         // Проверяем, не является ли список пустым
         if (head == null)
@@ -226,7 +226,7 @@ public class CustomLinkedList<T>
         }
     }
 
-    public void InsertBeforeFirstOccurrence(T existingElement, T newElement)
+    public void InsertBeforeFirstOccurrence(T existingElement, T newElement) // Задание 4.8
     {
         // Проверяем, не является ли список пустым
         if (head == null)
@@ -262,8 +262,190 @@ public class CustomLinkedList<T>
         Console.WriteLine($"Элемент {existingElement} не найден в списке. Ничего не вставлено.");
     }
 
+    public void AppendList(CustomLinkedList<T> listToAppend) // Задание 4.9
+    {
+        // Проверяем, не является ли список, который мы добавляем, пустым
+        if (listToAppend.head == null)
+        {
+            Console.WriteLine("Список для добавления пуст. Ничего не добавлено.");
+            return;
+        }
 
+        // Если наш список пуст, просто копируем в него список для добавления
+        if (head == null)
+        {
+            CopyList(listToAppend);
+            return;
+        }
 
+        // Находим последний элемент нашего списка
+        Node current = head;
+        while (current.Next != null)
+        {
+            current = current.Next;
+        }
+
+        // Копируем элементы из списка для добавления в конец нашего списка
+        CopyList(listToAppend, current);
+    }
+
+    private void CopyList(CustomLinkedList<T> source, Node destination)
+    {
+        Node current = source.head;
+
+        while (current != null)
+        {
+            Node newNode = new Node(current.Data);
+            destination.Next = newNode;
+            destination = newNode;
+            current = current.Next;
+        }
+    }
+
+    private void CopyList(CustomLinkedList<T> source)
+    {
+        Node current = source.head;
+
+        while (current != null)
+        {
+            AddToFront(current.Data);
+            current = current.Next;
+        }
+    }
+
+    public void SplitList(T number, out CustomLinkedList<T> secondList) // Задание 4.10
+    {
+        secondList = new CustomLinkedList<T>();
+
+        if (head == null)
+        {
+            // Список пуст, второй список остается пустым, первый не изменяется
+            return;
+        }
+
+        Node current = head;
+        Node previous = null;
+
+        // Ищем первое вхождение числа в списке
+        while (current != null && !EqualityComparer<T>.Default.Equals(current.Data, number))
+        {
+            previous = current;
+            current = current.Next;
+        }
+
+        if (current == null)
+        {
+            // Число не найдено в списке, второй список остается пустым, первый не изменяется
+            return;
+        }
+
+        // Разрываем связь между первым и вторым списком
+        if (previous != null)
+        {
+            previous.Next = null;
+        }
+        else
+        {
+            // Если первый элемент - искомое число, то обнуляем голову
+            head = null;
+        }
+
+        // Заполняем второй список начиная с найденного числа
+        secondList.head = current;
+
+        // Первый список остается без изменений
+    }
+    public void DuplicateList() // Задание 4.11
+    {
+        if (head == null)
+        {
+            // Нечего удваивать, список пуст
+            return;
+        }
+
+        // Копируем текущий список
+        CustomLinkedList<T> copy = CopyList();
+        copy.Reverse();
+
+        // Ищем конец текущего списка
+        Node current = head;
+        while (current.Next != null)
+        {
+            current = current.Next;
+        }
+
+        // Добавляем к текущему списку копию списка
+        current.Next = copy.head;
+    } 
+    public void SwapElements(T element1, T element2) // Задание 4.12
+    {
+        // Проверка наличия обоих элементов в списке
+        if (!Contains(element1) || !Contains(element2))
+        {
+            Console.WriteLine("Один из элементов отсутствует в списке. Невозможно выполнить обмен.");
+            return;
+        }
+
+        // Если элементы равны, обмена не требуется
+        if (EqualityComparer<T>.Default.Equals(element1, element2))
+        {
+            Console.WriteLine("Оба элемента одинаковы. Обмен не требуется.");
+            return;
+        }
+
+        // Ищем узлы, содержащие элементы
+        Node prev1 = null, current1 = head;
+        Node prev2 = null, current2 = head;
+
+        while (current1 != null && !EqualityComparer<T>.Default.Equals(current1.Data, element1))
+        {
+            prev1 = current1;
+            current1 = current1.Next;
+        }
+
+        while (current2 != null && !EqualityComparer<T>.Default.Equals(current2.Data, element2))
+        {
+            prev2 = current2;
+            current2 = current2.Next;
+        }
+
+        // Если один из элементов находится в начале списка
+        if (prev1 == null)
+        {
+            head = current2;
+        }
+        else
+        {
+            prev1.Next = current2;
+        }
+
+        if (prev2 == null)
+        {
+            head = current1;
+        }
+        else
+        {
+            prev2.Next = current1;
+        }
+
+        // Обмениваем ссылки Next
+        Node temp = current1.Next;
+        current1.Next = current2.Next;
+        current2.Next = temp;
+    }
+    public bool Contains(T data)
+    {
+        Node current = head;
+        while (current != null)
+        {
+            if (EqualityComparer<T>.Default.Equals(current.Data, data))
+            {
+                return true;
+            }
+            current = current.Next;
+        }
+        return false;
+    }
     // Добавьте остальные методы для выполнения заданий
     // ...
     public void Print()

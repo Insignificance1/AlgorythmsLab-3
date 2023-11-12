@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AlgorythmsLab_3
 {
-    class Executor
+    class ExecutorStack
     {
         public static void ExecuteStackOperations() //Задание 1.2 
         {
@@ -85,7 +85,7 @@ namespace AlgorythmsLab_3
                 Console.WriteLine();
             }
             Console.WriteLine();
-            MenuManager.ReturnToMainMenu();
+            MenuManager.ReturnToMainMenu("Stack");
         }
         public static void ExecuteStackOperationsFromFile()  // Задание 1.3
         {
@@ -160,7 +160,7 @@ namespace AlgorythmsLab_3
             }
 
             ExcelWriter.WriteToExcel(results, outputFilePath, chartName);
-            MenuManager.ReturnToMainMenu();
+            MenuManager.ReturnToMainMenu("Stack");
         }
         public static void ExecutePostfixCalculation() // Задание 1.4
         {
@@ -184,7 +184,7 @@ namespace AlgorythmsLab_3
             {
                 Console.WriteLine($"Ошибка при вычислении выражения: {ex.Message}");
             }
-            MenuManager.ReturnToMainMenu();
+            MenuManager.ReturnToMainMenu("Stack");
         }
 
         private static bool IsPostfixExpressionValid(string expression)
@@ -248,7 +248,7 @@ namespace AlgorythmsLab_3
             {
                 Console.WriteLine($"Ошибка: {ex.Message}");
             }
-            MenuManager.ReturnToMainMenu();
+            MenuManager.ReturnToMainMenu("Stack");
         }
 
         public static void ExecuteStackOperationsWithBuiltInStack() // Задание 1.6
@@ -333,220 +333,10 @@ namespace AlgorythmsLab_3
             }
 
             ExcelWriter.WriteToExcel(results, outputFilePath, chartName);
-            MenuManager.ReturnToMainMenu();
+            MenuManager.ReturnToMainMenu("Stack");
         }
 
-        public static void ReverseLinkedList() // Задание 4.1
-        {
-            Console.WriteLine("Задание 4.1 - Функция, которая переворачивает список L.");
-            try
-            {
-                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(10);
-
-                Console.WriteLine("Исходный список:");
-                myList.Print();
-
-                myList.Reverse();
-
-                Console.WriteLine("Перевернутый список:");
-                myList.Print();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                MenuManager.ReturnToMainMenu();
-            }
-        }
-        public static void MoveLastToFrontToLast() // Задание 4.2
-        {
-            Console.WriteLine("Задание 4.2 - Функция, меняет местами первый и последний элемент.");
-            try
-            {
-                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(5);
-
-                Console.WriteLine("Исходный список:");
-                myList.Print();
-
-                myList.MoveFirstAndLast();
-
-                Console.WriteLine("Список после перемещения первого и последнего элементов:");
-                myList.Print();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                MenuManager.ReturnToMainMenu();
-            }
-        }
-        public static void DistinctElementsCount() //Задание 4.3
-        {
-            Console.WriteLine("Задание 4.3 - Функция, которая определяет количество различных элементов списка.");
-            try
-            {
-                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(10);
-
-                Console.WriteLine("Исходный список:");
-                myList.Print();
-
-                int distinctCount = myList.CountDistinctElements();
-
-                Console.WriteLine($"Количество различных элементов в списке: {distinctCount}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                MenuManager.ReturnToMainMenu();
-            }
-        }
-
-        public static void RemoveNonUniqueElements() // Задание 4.4
-        {
-            Console.WriteLine("Задание 4.3 - Функция, которая удаляет из списка неуникальные элементы.");
-
-            try
-            {
-                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(40);
-
-                Console.WriteLine("Исходный список:");
-                myList.Print();
-
-                myList.RemoveNonUniqueElements();
-
-                Console.WriteLine("Список после удаления неуникальных элементов:");
-                myList.Print();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                MenuManager.ReturnToMainMenu();
-            }
-        }
-        public static void InsertYourself() // Задание 4.5
-        {
-            Console.WriteLine("Задание 4.5 - Вставка списка самого в себя вслед за первым вхождением числа x.");
-            try
-            {
-                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(10);
-
-                Console.WriteLine("Исходный список:");
-                myList.Print();
-
-                Console.Write("Введите число x: ");
-                int x = int.Parse(Console.ReadLine());
-
-                myList.PasteYourself(x);
-
-                Console.WriteLine($"Список после вставки самого себя после первого вхождения числа {x}:");
-                myList.Print();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                MenuManager.ReturnToMainMenu();
-            }
-        }
-        public static void InsertOrdered() // Задание 4.6
-        {
-            Console.WriteLine("Задание 4.6 - Вставка в упорядоченный список с сохранением порядка.");
-            try
-            {
-                CustomLinkedList<int> myList = Generate.GenerateRandomSortedLinkedList(10);
-
-                Console.WriteLine("Исходный упорядоченный список:");
-                myList.Print();
-
-                Console.Write("Введите элемент для вставки: ");
-                int element = int.Parse(Console.ReadLine());
-
-                myList.InsertOrdered(element);
-
-                Console.WriteLine($"Список после вставки элемента {element} с сохранением порядка:");
-                myList.Print();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                MenuManager.ReturnToMainMenu();
-            }
-        }
-        public static void RemoveAllOccurrences() // Задание 4.7
-        {
-            Console.WriteLine("Задание 4.7 - Удаление всех элементов равных заданному.");
-
-            try
-            {
-                CustomLinkedList<int> myList = Generate.GenerateRandomLowValuesLinkedList(50);
-
-                Console.WriteLine("Исходный список:");
-                myList.Print();
-
-                Console.Write("Введите элемент для удаления: ");
-                int element = int.Parse(Console.ReadLine());
-
-                myList.RemoveAllOccurrences(element);
-
-                Console.WriteLine($"Список после удаления всех вхождений элемента {element}:");
-                myList.Print();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                MenuManager.ReturnToMainMenu();
-            }
-        }
-        public static void InsertBeforeFirstOccurrence() // Задание 4.8
-        {
-            Console.WriteLine("Задание 4.8 - Вставка элемента перед первым вхождением другого элемента.");
-
-            try
-            {
-                CustomLinkedList<int> myList = Generate.GenerateRandomLinkedList(30);
-
-                Console.WriteLine("Исходный список:");
-                myList.Print();
-
-                Console.Write("Введите элемент, перед которым нужно вставить новый элемент: ");
-                int existingElement = int.Parse(Console.ReadLine());
-
-                Console.Write("Введите новый элемент: ");
-                int newElement = int.Parse(Console.ReadLine());
-
-                myList.InsertBeforeFirstOccurrence(existingElement, newElement);
-
-                Console.WriteLine($"Список после вставки элемента {newElement} перед первым вхождением элемента {existingElement}:");
-                myList.Print();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                MenuManager.ReturnToMainMenu();
-            }
-        }
-
+        
     }
 }
 

@@ -10,6 +10,8 @@ namespace AlgorythmsLab_3
     {
         public static void RunStackTasks()
         {
+            Console.Clear();
+
             Console.WriteLine("Выберите задание стека:");
             Console.WriteLine("1. Запуск различных наборов операций из файла input.txt с выводом на экран");
             Console.WriteLine("2. Запуск с замером времени различных наборов операций из файла input.txt.");
@@ -25,23 +27,23 @@ namespace AlgorythmsLab_3
                 {
                     case 1:
                         Console.Clear();
-                        Executor.ExecuteStackOperations();
+                        ExecutorStack.ExecuteStackOperations();
                         break;
                     case 2:
                         Console.Clear();
-                        Executor.ExecuteStackOperationsFromFile();
+                        ExecutorStack.ExecuteStackOperationsFromFile();
                         break;
                     case 3:
                         Console.Clear();
-                        Executor.ExecutePostfixCalculation();
+                        ExecutorStack.ExecutePostfixCalculation();
                         break;
                     case 4:
                         Console.Clear();
-                        Executor.ExecuteInfixToPostfixTask();
+                        ExecutorStack.ExecuteInfixToPostfixTask();
                         break;
                     case 5:
                         Console.Clear();
-                        Executor.ExecuteStackOperationsWithBuiltInStack();
+                        ExecutorStack.ExecuteStackOperationsWithBuiltInStack();
                         break;
                     default:
                         Console.WriteLine("Введите номер от 1 до 5!");
@@ -52,6 +54,8 @@ namespace AlgorythmsLab_3
 
         public static void RunQueueTasks()
         {
+            Console.Clear();
+
             Console.WriteLine("Выберите задание очереди:");
             Console.WriteLine("1. Запуск различных наборов операций из файла input.txt с выводом на экран");
             Console.WriteLine("2. Запуск с замером времени различных наборов операций из файла input.txt.");
@@ -80,6 +84,8 @@ namespace AlgorythmsLab_3
 
         public static void RunDynamicStructuresTasks()
         {
+            Console.Clear();
+
             Console.WriteLine("Выберите задание динамических структур данных:");
             Console.WriteLine("1. Пример использования структуры данных Список");
             Console.WriteLine("2. Пример использования структуры данных Стек");
@@ -113,6 +119,8 @@ namespace AlgorythmsLab_3
 
         public static void RunListTasks()
         {
+            Console.Clear();
+
             Console.WriteLine("Выберите задание листа:");
             Console.WriteLine("1. Перевернуть список");
             Console.WriteLine("2. Поменять местами первый и последний элемент");
@@ -135,51 +143,51 @@ namespace AlgorythmsLab_3
                 {
                     case 1:
                         Console.Clear();
-                        Executor.ReverseLinkedList();
+                        ExecutorList.ReverseLinkedList();
                         break;
                     case 2:
                         Console.Clear();
-                        Executor.MoveLastToFrontToLast(); 
+                        ExecutorList.MoveLastToFrontToLast(); 
                         break;
                     case 3:
                         Console.Clear();
-                        Executor.DistinctElementsCount();
+                        ExecutorList.DistinctElementsCount();
                         break;
                     case 4:
                         Console.Clear();
-                        Executor.RemoveNonUniqueElements();
+                        ExecutorList.RemoveNonUniqueElements();
                         break;
                     case 5:
                         Console.Clear();
-                        Executor.InsertYourself();
+                        ExecutorList.InsertYourself();
                         break;
                     case 6:
                         Console.Clear();
-                        Executor.InsertOrdered();
+                        ExecutorList.InsertOrdered();
                         break;
                     case 7:
                         Console.Clear();
-                        Executor.RemoveAllOccurrences();
+                        ExecutorList.RemoveAllOccurrences();
                         break;
                     case 8:
                         Console.Clear();
-                        Executor.InsertBeforeFirstOccurrence();
+                        ExecutorList.InsertBeforeFirstOccurrence();
                         break;
                     case 9:
                         Console.Clear();
-                        // Реализация задания 9 для листа
+                        ExecutorList.AppendList();
                         break;
                     case 10:
                         Console.Clear();
-                        // Реализация задания 10 для листа
+                        ExecutorList.SplitListExample();
                         break;
                     case 11:
                         Console.Clear();
-                        // Реализация задания 11 для листа
+                        ExecutorList.DuplicateListExample();
                         break;
                     case 12:
                         Console.Clear();
-                        // Реализация задания 12 для листа
+                        ExecutorList.SwapElementsExample();
                         break;
                     default:
                         Console.WriteLine("Введите номер от 1 до 12!");
