@@ -112,7 +112,10 @@ namespace AlgorythmsLab_3.Utilities
                 switch (choice)
                 {
                     case 1:
-                        // Реализация задания 1 для динамических структур данных (Список)
+                        Console.Clear();
+                        ExampleList.ExecuteList();
+                        MenuManager.ReturnToMainMenu("DinamicStructure");
+
                         break;
                     case 2:
                         // Реализация задания 2 для динамических структур данных (Стек)
