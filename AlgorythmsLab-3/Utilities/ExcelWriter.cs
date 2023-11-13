@@ -34,6 +34,18 @@ namespace AlgorythmsLab_3.Utilities
                 AddChart(worksheet, chartName, "Количество операций", "Время (миллисекунды)", results.Count + 1);
 
                 package.Save();
+                try
+                {
+                    if (File.Exists(filePath))
+                    {
+                        Console.WriteLine($"Файл: {chartName}.excel - успешно создан");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка при проверке или создании файла: {ex.Message}");
+                }
+                Console.WriteLine();
             }
         }
 

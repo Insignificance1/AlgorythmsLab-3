@@ -12,11 +12,11 @@ namespace AlgorythmsLab_3.Queue
     {
         public static void ExecuteQueueOperations() // Задание 2.2
         {
-            for (int size = 10; size <= 1000; size += 10)
+            for (int size = 1; size <= 100; size ++)
             {
                 Console.WriteLine($"Номер прохода: {size}:");
 
-                Generate.GenerateInputFile();
+                Generate.GenerateInputFile(size);
 
                 CustomQueue<string> queue = new CustomQueue<string>();
 
@@ -137,7 +137,7 @@ namespace AlgorythmsLab_3.Queue
         private static void ExecuteQueueOperations(List<Tuple<int, double>> results, string fileName, int chooseFile)
         {
             bool isExcel = true;
-            for (int size = 10; size <= 1000; size++)
+            for (int size = 10; size <= 10000; size +=10)
             {
                 Console.WriteLine($"Номер прохода: {size}:");
                 if (chooseFile == 1)
@@ -229,7 +229,7 @@ namespace AlgorythmsLab_3.Queue
 
             List<Tuple<int, double>> results = new List<Tuple<int, double>>();
 
-            for (int size = 10; size <= 1000; size += 10)
+            for (int size = 10; size <= 10000; size += 10)
             {
                 Console.WriteLine($"Номер прохода: {size}");
 

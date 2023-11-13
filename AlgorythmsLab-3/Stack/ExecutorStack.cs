@@ -12,10 +12,10 @@ namespace AlgorythmsLab_3.Stack
     {
         public static void ExecuteStackOperations() //Задание 1.2 
         {
-            for (int run = 1; run <= 100; run++)
+            for (int size = 1; size <= 100; size++)
             {
-                Console.WriteLine($"Номер прохода: {run}:");
-                Generate.GenerateInputFile();
+                Console.WriteLine($"Номер прохода: {size}:");
+                Generate.GenerateInputFile(size);
 
                 CustomStack<object> stack = new CustomStack<object>();
 
@@ -95,7 +95,7 @@ namespace AlgorythmsLab_3.Stack
 
             List<Tuple<int, double>> results = new List<Tuple<int, double>>();
 
-            for (int size = 10; size <= 1000; size += 10)
+            for (int size = 10; size <= 50000; size += 10)
             {
                 Console.WriteLine($"Размер стека: {size}");
 
@@ -259,7 +259,7 @@ namespace AlgorythmsLab_3.Stack
 
             List<Tuple<int, double>> results = new List<Tuple<int, double>>();
 
-            for (int size = 10; size <= 1000; size += 10)
+            for (int size = 10; size <= 50000; size += 10)
             {
                 Console.WriteLine($"Размер стека: {size}");
 

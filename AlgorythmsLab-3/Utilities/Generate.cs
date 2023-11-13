@@ -8,14 +8,13 @@ namespace AlgorythmsLab_3.Utilities
 {
     class Generate
     {
-        public static void GenerateInputFile()
+        public static void GenerateInputFile(int size)
         {
             Random random = new Random();
-            int operationsCount = random.Next(5, 15);
 
             using (StreamWriter writer = new StreamWriter("input.txt"))
             {
-                for (int i = 0; i < operationsCount; i++)
+                for (int i = 0; i < size; i++)
                 {
                     int operation = random.Next(1, 6);
                     writer.Write($"{operation} ");
