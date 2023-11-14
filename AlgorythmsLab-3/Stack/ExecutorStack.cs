@@ -10,7 +10,7 @@ namespace AlgorythmsLab_3.Stack
 {
     class ExecutorStack
     {
-        public static void ExecuteStackOperations() //Задание 1.2 
+        public static void ExecuteStackOperations()
         {
             for (int size = 1; size <= 100; size++)
             {
@@ -26,51 +26,7 @@ namespace AlgorythmsLab_3.Stack
                     for (int i = 0; i < operations.Length - 1; i++)
                     {
                         int op = int.Parse(operations[i]);
-
-                        switch (op)
-                        {
-                            case 1:
-                                // Push
-                                if (i + 1 < operations.Length)
-                                {
-                                    object element = operations[i + 1];
-                                    stack.Push(element);
-                                    Console.WriteLine($"Push: {element}");
-                                    i++;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Push: Недостаточно аргументов для операции.");
-                                }
-                                break;
-                            case 2:
-                                // Pop
-                                if (!stack.IsEmpty())
-                                {
-                                    object poppedItem = stack.Pop();
-                                    Console.WriteLine($"Pop: {poppedItem}");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Pop: Стек пуст. Невозможно выполнить операцию Pop.");
-                                }
-                                break;
-                            case 3:
-                                // Top
-                                Console.WriteLine($"Top: {stack.Top()}");
-                                break;
-                            case 4:
-                                // isEmpty
-                                Console.WriteLine($"isEmpty: {stack.IsEmpty()}");
-                                break;
-                            case 5:
-                                // Print
-                                stack.Print();
-                                break;
-                            default:
-                                Console.WriteLine("Неверная операция");
-                                break;
-                        }
+                        ProcessOperation(op, stack, ref i, operations);
                     }
                 }
                 catch (FileNotFoundException)
@@ -84,8 +40,44 @@ namespace AlgorythmsLab_3.Stack
 
                 Console.WriteLine();
             }
-            Console.WriteLine();
             MenuManager.ReturnToMainMenu("Stack");
+        }
+
+        private static void ProcessOperation(int op, CustomStack<object> stack, ref int i, string[] operations)
+        {
+            switch (op)
+            {
+                case 1:
+                    if (i + 1 < operations.Length)
+                    {
+                        object element = operations[i + 1];
+                        stack.Push(element);
+                        Console.WriteLine($"Push: {element}");
+                        i++;
+                    }
+                    else Console.WriteLine("Push: Недостаточно аргументов для операции.");
+                    break;
+                case 2:
+                    if (!stack.IsEmpty())
+                    {
+                        object poppedItem = stack.Pop();
+                        Console.WriteLine($"Pop: {poppedItem}");
+                    }
+                    else Console.WriteLine("Pop: Стек пуст. Невозможно выполнить операцию Pop.");
+                    break;
+                case 3:
+                    Console.WriteLine($"Top: {stack.Top()}");
+                    break;
+                case 4:
+                    Console.WriteLine($"isEmpty: {stack.IsEmpty()}");
+                    break;
+                case 5:
+                    stack.Print();
+                    break;
+                default:
+                    Console.WriteLine("Неверная операция");
+                    break;
+            }
         }
         public static void ExecuteStackOperationsFromFile()  // Задание 1.3
         {
@@ -103,51 +95,11 @@ namespace AlgorythmsLab_3.Stack
 
                 CustomStack<object> stack = new CustomStack<object>();
                 OperationTimer timer = new OperationTimer();
-                timer.Start();
 
                 try
                 {
-                    string[] operations = File.ReadAllText("inputStack.txt").Split(' ');
-
-                    for (int i = 0; i < operations.Length - 1; i++)
-                    {
-                        int op = int.Parse(operations[i]);
-
-                        switch (op)
-                        {
-                            case 1:
-                                if (i + 1 < operations.Length)
-                                {
-                                    i++;
-                                    object element = operations[i];
-                                    stack.Push(element);
-                                }
-                                break;
-
-                            case 2:
-                                object poppedItem = stack.Pop();
-                                break;
-
-                            case 3:
-                                object topItem = stack.Top();
-                                break;
-
-                            case 4:
-                                bool isEmpty = stack.IsEmpty();
-                                break;
-
-                            case 5:
-                                stack.Print(false);
-                                break;
-
-                            default:
-                                Console.WriteLine("Неверная операция");
-                                break;
-                        }
-                    }
-
-                    TimeSpan elapsedTotal = timer.Stop();
-                    results.Add(new Tuple<int, double>(size, elapsedTotal.TotalMilliseconds));
+                    timer.Start();
+                    ProcessStackOperations(size, stack, results);
                 }
                 catch (FileNotFoundException)
                 {
@@ -157,11 +109,60 @@ namespace AlgorythmsLab_3.Stack
                 {
                     Console.WriteLine($"Ошибка выполнения операций: {ex.Message}");
                 }
+                TimeSpan elapsedTotal = timer.Stop();
+                results.Add(new Tuple<int, double>(size, elapsedTotal.TotalMilliseconds));
             }
 
             ExcelWriter.WriteToExcel(results, outputFilePath, chartName);
             MenuManager.ReturnToMainMenu("Stack");
         }
+
+        private static void ProcessStackOperations(int size, CustomStack<object> stack, List<Tuple<int, double>> results)
+        {
+            string[] operations = File.ReadAllText("inputStack.txt").Split(' ');
+
+            for (int i = 0; i < operations.Length - 1; i++)
+            {
+                int op = int.Parse(operations[i]);
+                PerformStackOperation(op, stack, ref i, operations);
+            }
+        }
+
+        private static void PerformStackOperation(int op, CustomStack<object> stack, ref int i, string[] operations)
+        {
+            switch (op)
+            {
+                case 1:
+                    if (i + 1 < operations.Length)
+                    {
+                        i++;
+                        object element = operations[i];
+                        stack.Push(element);
+                    }
+                    break;
+
+                case 2:
+                    stack.Pop();
+                    break;
+
+                case 3:
+                    stack.Top();
+                    break;
+
+                case 4:
+                    stack.IsEmpty();
+                    break;
+
+                case 5:
+                    stack.Print(false);
+                    break;
+
+                default:
+                    Console.WriteLine("Неверная операция");
+                    break;
+            }
+        }
+
         public static void ExecutePostfixCalculation() // Задание 1.4
         {
             Console.WriteLine("Задание 1.4 - Вычисление в постфиксной записи");
@@ -270,57 +271,7 @@ namespace AlgorythmsLab_3.Stack
 
                 try
                 {
-                    string[] operations = File.ReadAllText("inputStack.txt").Split(' ');
-
-                    for (int i = 0; i < operations.Length - 1; i++)
-                    {
-                        int op = int.Parse(operations[i]);
-
-                        switch (op)
-                        {
-                            case 1:
-                                if (i + 1 < operations.Length)
-                                {
-                                    i++;
-                                    object element = operations[i];
-                                    stack.Push(element);
-                                }
-                                break;
-
-                            case 2:
-                                if (stack.Count > 0)
-                                {
-                                    object poppedItem = stack.Pop();
-                                }
-                                break;
-
-                            case 3:
-                                if (stack.Count > 0)
-                                {
-                                    object topItem = stack.Peek();
-                                }
-                                break;
-
-                            case 4:
-                                bool isEmpty = stack.Count == 0;
-                                break;
-
-                            case 5:
-                                // Встроенный Stack не предоставляет метода Print, поэтому используем цикл для вывода
-                                foreach (var item in stack)
-                                {
-                                }
-
-                                break;
-
-                            default:
-                                Console.WriteLine("Неверная операция");
-                                break;
-                        }
-                    }
-
-                    TimeSpan elapsedTotal = timer.Stop();
-                    results.Add(new Tuple<int, double>(size, elapsedTotal.TotalMilliseconds));
+                    ProcessStackOperations(size, stack, results);
                 }
                 catch (FileNotFoundException)
                 {
@@ -330,11 +281,71 @@ namespace AlgorythmsLab_3.Stack
                 {
                     Console.WriteLine($"Ошибка выполнения операций: {ex.Message}");
                 }
+                TimeSpan elapsedTotal = timer.Stop();
+                results.Add(new Tuple<int, double>(size, elapsedTotal.TotalMilliseconds));
             }
 
             ExcelWriter.WriteToExcel(results, outputFilePath, chartName);
             MenuManager.ReturnToMainMenu("Stack");
         }
+
+        private static void ProcessStackOperations(int size, Stack<object> stack, List<Tuple<int, double>> results)
+        {
+            string[] operations = File.ReadAllText("inputStack.txt").Split(' ');
+
+            for (int i = 0; i < operations.Length - 1; i++)
+            {
+                int op = int.Parse(operations[i]);
+                PerformStackOperation(op, stack, ref i, operations);
+            }
+        }
+
+        private static void PerformStackOperation(int op, Stack<object> stack, ref int currentIndex, string[] operations)
+        {
+            switch (op)
+            {
+                case 1:
+                    // Push
+                    if (currentIndex + 1 < operations.Length)
+                    {
+                        currentIndex++;
+                        object element = operations[currentIndex];
+                        stack.Push(element);
+                    }
+                    break;
+                case 2:
+                    // Pop
+                    if (stack.Count > 0)
+                    {
+                        stack.Pop();
+                    }
+                    break;
+                case 3:
+                    // Top
+                    if (stack.Count > 0)
+                    {
+                        stack.Peek();
+                    }
+                    break;
+                case 4:
+                    // Встроенный Stack не предоставляет метода isEmpty, поэтому используем проверку
+                    if (stack.Count == 0)
+                    {
+                        bool isEmpty = true;
+                    }
+                    break;
+                case 5:
+                    // Встроенный Stack не предоставляет метода Print, поэтому используем цикл
+                    foreach (var item in stack)
+                    {
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Неверная операция");
+                    break;
+            }
+        }
+
 
 
     }

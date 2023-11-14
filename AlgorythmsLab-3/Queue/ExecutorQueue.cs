@@ -10,9 +10,9 @@ namespace AlgorythmsLab_3.Queue
 {
     public class ExecutorQueue
     {
-        public static void ExecuteQueueOperations() // Задание 2.2
+        public static void ExecuteQueueOperations()
         {
-            for (int size = 1; size <= 100; size ++)
+            for (int size = 1; size <= 100; size++)
             {
                 Console.WriteLine($"Номер прохода: {size}:");
 
@@ -27,64 +27,7 @@ namespace AlgorythmsLab_3.Queue
                     for (int i = 0; i < operations.Length - 1; i++)
                     {
                         int op = int.Parse(operations[i]);
-
-                        switch (op)
-                        {
-                            case 1:
-                                // Enqueue
-                                if (i + 1 < operations.Length)
-                                {
-                                    string element = operations[i + 1];
-                                    queue.Enqueue(element);
-                                    Console.WriteLine($"Enqueue: {element}");
-                                    i++;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Enqueue: Недостаточно аргументов для операции.");
-                                }
-                                break;
-                            case 2:
-                                // Dequeue
-                                try
-                                {
-                                    string dequeuedItem = queue.Dequeue();
-                                    Console.WriteLine($"Dequeue: {dequeuedItem}");
-                                }
-                                catch (InvalidOperationException ex)
-                                {
-                                    Console.WriteLine($"Dequeue: {ex.Message}");
-                                }
-                                break;
-                            case 3:
-                                // Peek
-                                try
-                                {
-                                    string peekedItem = queue.Peek();
-                                    Console.WriteLine($"Peek: {peekedItem}");
-                                }
-                                catch (InvalidOperationException ex)
-                                {
-                                    Console.WriteLine($"Peek: {ex.Message}");
-                                }
-                                break;
-                            case 4:
-                                // IsEmpty
-                                Console.WriteLine($"IsEmpty: {queue.IsEmpty()}");
-                                break;
-                            case 5:
-                                // Print
-                                if (queue.IsEmpty())
-                                {
-                                    Console.WriteLine("Print: Queue is Empty.");
-                                    break;
-                                }
-                                queue.Print();
-                                break;
-                            default:
-                                Console.WriteLine("Неверная операция");
-                                break;
-                        }
+                        ProcessQueueOperation(op, i, operations, queue);
                     }
                 }
                 catch (FileNotFoundException)
@@ -102,18 +45,74 @@ namespace AlgorythmsLab_3.Queue
             MenuManager.ReturnToMainMenu("Queue");
         }
 
-        public static void ExecuteQueueOperationsWithDifferentFile() // Задание 2.3
+        private static void ProcessQueueOperation(int op, int i, string[] operations, CustomQueue<string> queue)
+        {
+            switch (op)
+            {
+                case 1:
+                    if (i + 1 < operations.Length)
+                    {
+                        string element = operations[i + 1];
+                        queue.Enqueue(element);
+                        Console.WriteLine($"Enqueue: {element}");
+                        i++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Enqueue: Недостаточно аргументов для операции.");
+                    }
+                    break;
+                case 2:
+                    try
+                    {
+                        string dequeuedItem = queue.Dequeue();
+                        Console.WriteLine($"Dequeue: {dequeuedItem}");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.WriteLine($"Dequeue: {ex.Message}");
+                    }
+                    break;
+                case 3:
+                    try
+                    {
+                        string peekedItem = queue.Peek();
+                        Console.WriteLine($"Peek: {peekedItem}");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.WriteLine($"Peek: {ex.Message}");
+                    }
+                    break;
+                case 4:
+                    Console.WriteLine($"IsEmpty: {queue.IsEmpty()}");
+                    break;
+                case 5:
+                    if (queue.IsEmpty())
+                    {
+                        Console.WriteLine("Print: Queue is Empty.");
+                        break;
+                    }
+                    queue.Print();
+                    break;
+                default:
+                    Console.WriteLine("Неверная операция");
+                    break;
+            }
+        }
+
+        public static void ExecuteQueueOperationsWithSameLenghtFile() // Задание 2.3
         {
             // Одинаковый по длине, случайный по операциям
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string outputFilePath = Path.Combine(desktopPath, "CustomQueue_Different - График выполнения операци.xlsx");
-            string chartName = "CustomQueue_Different - График выполнения операций";
-            int isDifferent = 1;
+            string outputFilePath = Path.Combine(desktopPath, "CustomQueue_SameLenght - График выполнения операци.xlsx");
+            string chartName = "CustomQueue_SameLenght - График выполнения операций";
+            int isSameLenght = 1;
 
-            List<Tuple<int, double>> resultsDifferent = new List<Tuple<int, double>>();
-            ExecuteQueueOperations(resultsDifferent, "inputQueueDifferent.txt", isDifferent);
+            List<Tuple<int, double>> results = new List<Tuple<int, double>>();
+            ExecuteQueueOperations(results, "inputQueueSameLenght.txt", isSameLenght);
 
-            ExcelWriter.WriteToExcel(resultsDifferent, outputFilePath, chartName);
+            ExcelWriter.WriteToExcel(results, outputFilePath, chartName);
 
             Console.WriteLine();
             MenuManager.ReturnToMainMenu("Queue");
@@ -134,79 +133,31 @@ namespace AlgorythmsLab_3.Queue
             Console.WriteLine();
             MenuManager.ReturnToMainMenu("Queue");
         }
+
         private static void ExecuteQueueOperations(List<Tuple<int, double>> results, string fileName, int chooseFile)
         {
             bool isExcel = true;
-            for (int size = 10; size <= 10000; size +=10)
+
+            for (int size = 10; size <= 10000; size += 10)
             {
                 Console.WriteLine($"Номер прохода: {size}:");
-                if (chooseFile == 1)
-                {
-                    Generate.GenerateInputQueueDifferentFile();
-                }
-                else if (chooseFile == 2)
-                {
-                    Generate.GenerateInputQueueFile(size);
-                }
-
-                CustomQueue<string> queue = new CustomQueue<string>();
-                OperationTimer timer = new OperationTimer();
-                timer.Start();
 
                 try
                 {
-                    string[] operations = File.ReadAllText(fileName).Split(' ');
-
-                    for (int i = 0; i < operations.Length - 1; i++)
+                    if (chooseFile == 1)
                     {
-                        int op = int.Parse(operations[i]);
-
-                        switch (op)
-                        {
-                            case 1:
-                                // Enqueue
-                                if (i + 1 < operations.Length)
-                                {
-                                    string element = operations[i + 1];
-                                    queue.Enqueue(element);
-                                    i++;
-                                }
-                                break;
-                            case 2:
-                                // Dequeue
-                                try
-                                {
-                                    string dequeuedItem = queue.Dequeue();
-                                }
-                                catch (InvalidOperationException)
-                                {
-                                    // Ignore if the queue is empty
-                                }
-                                break;
-                            case 3:
-                                // Peek
-                                try
-                                {
-                                    string peekedItem = queue.Peek();
-                                }
-                                catch (InvalidOperationException)
-                                {
-                                    // Ignore if the queue is empty
-                                }
-                                break;
-                            case 4:
-                                // IsEmpty
-                                bool isEmpty = queue.IsEmpty();
-                                break;
-                            case 5:
-                                // Print
-                                queue.Print(isExcel);
-                                break;
-                            default:
-                                Console.WriteLine("Неверная операция");
-                                break;
-                        }
+                        Generate.GenerateInputQueueDifferentFile();
                     }
+                    else if (chooseFile == 2)
+                    {
+                        Generate.GenerateInputQueueFile(size);
+                    }
+
+                    CustomQueue<string> queue = new CustomQueue<string>();
+                    OperationTimer timer = new OperationTimer();
+                    timer.Start();
+
+                    ProcessQueueOperations(queue, fileName, isExcel);
 
                     TimeSpan elapsedTotal = timer.Stop();
                     results.Add(new Tuple<int, double>(size, elapsedTotal.TotalMilliseconds));
@@ -218,6 +169,56 @@ namespace AlgorythmsLab_3.Queue
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Ошибка выполнения операций: {ex.Message}");
+                }
+            }
+        }
+
+        private static void ProcessQueueOperations(CustomQueue<string> queue, string fileName, bool isExcel)
+        {
+            string[] operations = File.ReadAllText(fileName).Split(' ');
+
+            for (int i = 0; i < operations.Length - 1; i++)
+            {
+                int op = int.Parse(operations[i]);
+
+                switch (op)
+                {
+                    case 1:
+                        // Enqueue
+                        if (i + 1 < operations.Length)
+                        {
+                            string element = operations[i + 1];
+                            queue.Enqueue(element);
+                            i++;
+                        }
+                        break;
+                    case 2:
+                        // Dequeue
+                        try
+                        {
+                            string dequeuedItem = queue.Dequeue();
+                        }
+                        catch (InvalidOperationException) { }
+                        break;
+                    case 3:
+                        // Peek
+                        try
+                        {
+                            string peekedItem = queue.Peek();
+                        }
+                        catch (InvalidOperationException) { }
+                        break;
+                    case 4:
+                        // IsEmpty
+                        bool isEmpty = queue.IsEmpty();
+                        break;
+                    case 5:
+                        // Print
+                        queue.Print(isExcel);
+                        break;
+                    default:
+                        Console.WriteLine("Неверная операция");
+                        break;
                 }
             }
         }
@@ -233,58 +234,15 @@ namespace AlgorythmsLab_3.Queue
             {
                 Console.WriteLine($"Номер прохода: {size}");
 
-                Generate.GenerateInputQueueFile(size);
-
-                Queue<object> queue = new Queue<object>();
-                OperationTimer timer = new OperationTimer();
-                timer.Start();
-
                 try
                 {
-                    string[] operations = File.ReadAllText("inputQueue.txt").Split(' ');
+                    Generate.GenerateInputQueueFile(size);
 
-                    for (int i = 0; i < operations.Length - 1; i++)
-                    {
-                        int op = int.Parse(operations[i]);
+                    Queue<object> queue = new Queue<object>();
+                    OperationTimer timer = new OperationTimer();
+                    timer.Start();
 
-                        switch (op)
-                        {
-                            case 1:
-                                if (i + 1 < operations.Length)
-                                {
-                                    i++;
-                                    object element = operations[i];
-                                    queue.Enqueue(element);
-                                }
-                                break;
-
-                            case 2:
-                                if (queue.Count > 0)
-                                {
-                                    object dequeuedItem = queue.Dequeue();
-                                }
-                                break;
-
-                            case 3:
-                                if (queue.Count > 0)
-                                {
-                                    object peekedItem = queue.Peek();
-                                }
-                                break;
-
-                            case 4:
-                                bool isEmpty = queue.Count == 0;
-                                break;
-
-                            case 5:
-                                // Print не применим, так как у Queue нет операции для вывода всего содержимого
-                                foreach (var item in queue) { }
-                                break;
-                            default:
-                                Console.WriteLine("Неверная операция");
-                                break;
-                        }
-                    }
+                    ProcessQueueOperationsWithQueue(queue);
 
                     TimeSpan elapsedTotal = timer.Stop();
                     results.Add(new Tuple<int, double>(size, elapsedTotal.TotalMilliseconds));
@@ -301,6 +259,53 @@ namespace AlgorythmsLab_3.Queue
 
             ExcelWriter.WriteToExcel(results, outputFilePath, chartName);
             MenuManager.ReturnToMainMenu("Queue");
+        }
+
+        private static void ProcessQueueOperationsWithQueue(Queue<object> queue)
+        {
+            string[] operations = File.ReadAllText("inputQueue.txt").Split(' ');
+
+            for (int i = 0; i < operations.Length - 1; i++)
+            {
+                int op = int.Parse(operations[i]);
+
+                switch (op)
+                {
+                    case 1:
+                        if (i + 1 < operations.Length)
+                        {
+                            i++;
+                            object element = operations[i];
+                            queue.Enqueue(element);
+                        }
+                        break;
+                    case 2:
+                        if (queue.Count > 0)
+                        {
+                            object dequeuedItem = queue.Dequeue();
+                        }
+                        break;
+                    case 3:
+                        if (queue.Count > 0)
+                        {
+                            object peekedItem = queue.Peek();
+                        }
+                        break;
+                    case 4:
+                        if (queue.Count == 0)
+                        {
+                            bool isEmpty = true;
+                        }
+                        break;
+                    case 5:
+                        // Print не применим, так как у Queue нет операции для вывода всего содержимого, поэтому используем цикл
+                        foreach (var item in queue) { }
+                        break;
+                    default:
+                        Console.WriteLine("Неверная операция");
+                        break;
+                }
+            }
         }
 
     }

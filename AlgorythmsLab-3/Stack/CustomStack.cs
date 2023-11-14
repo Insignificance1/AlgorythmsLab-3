@@ -18,11 +18,6 @@ namespace AlgorythmsLab_3.Stack
             items = new LinkedList<T>();
         }
 
-        public int Size
-        {
-            get { return items.Count; }
-        }
-
         public void Push(T element)
         {
             Node<T> newNode = new Node<T>(element);
@@ -61,6 +56,7 @@ namespace AlgorythmsLab_3.Stack
 
         public void Print(bool printToConsole = true)
         {
+            Node<T> current = top;
             if (IsEmpty())
             {
                 if (printToConsole)
@@ -69,14 +65,10 @@ namespace AlgorythmsLab_3.Stack
                 }
                 return;
             }
-
-            Node<T> current = top;
-
             if (printToConsole)
             {
                 Console.Write("Print: ");
             }
-
             while (current != null)
             {
                 if (printToConsole)
@@ -85,7 +77,6 @@ namespace AlgorythmsLab_3.Stack
                 }
                 current = current.Next;
             }
-
             if (printToConsole)
             {
                 Console.WriteLine();

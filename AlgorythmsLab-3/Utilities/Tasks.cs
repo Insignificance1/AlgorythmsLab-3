@@ -78,7 +78,7 @@ namespace AlgorythmsLab_3.Utilities
                         break;
                     case 2:
                         Console.Clear();
-                        ExecutorQueue.ExecuteQueueOperationsWithDifferentFile();
+                        ExecutorQueue.ExecuteQueueOperationsWithSameLenghtFile();
                         break;
                     case 3:
                         Console.Clear();

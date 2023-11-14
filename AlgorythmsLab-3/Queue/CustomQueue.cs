@@ -9,12 +9,10 @@ public class CustomQueue<T>
     {
         list = new LinkedList<T>();
     }
-
     public void Enqueue(T element)
     {
         list.AddLast(element);
     }
-
     public T Dequeue()
     {
         if (IsEmpty())
@@ -26,12 +24,10 @@ public class CustomQueue<T>
         list.RemoveFirst();
         return value;
     }
-
     public bool IsEmpty()
     {
         return list.Count == 0;
     }
-
     public void Print()
     {
         foreach (T item in list)
@@ -40,13 +36,6 @@ public class CustomQueue<T>
         }
         Console.WriteLine();
     }
-    public void Print(bool isExcel)
-    {
-        foreach (T item in list)
-        {
-        }
-    }
-
     public T Peek()
     {
         if (IsEmpty())
@@ -55,5 +44,11 @@ public class CustomQueue<T>
         }
 
         return list.First.Value;
+    }
+    public void Print(bool isExcel)
+    {
+        foreach (T item in list)
+        {
+        }
     }
 }

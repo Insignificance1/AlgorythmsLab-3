@@ -30,7 +30,7 @@ public class CustomLinkedList<T>
         head = newNode;
     }
 
-    public void Reverse() // Задание 4.1
+    public void Reverse()   // Задание 4.1
     {
         Node prev = null;
         Node current = head;
@@ -46,7 +46,7 @@ public class CustomLinkedList<T>
 
         head = prev;
     }
-    public void MoveFirstAndLast()
+    public void MoveFirstAndLast()  // Задание 4.2
     {
         if (head == null || head.Next == null)
         {
@@ -192,26 +192,22 @@ public class CustomLinkedList<T>
     }
     public void RemoveAllOccurrences(T element) // Задание 4.7
     {
-        // Проверяем, не является ли список пустым
         if (head == null)
         {
             Console.WriteLine("Список пуст. Нечего удалять.");
             return;
         }
 
-        // Удаляем все узлы с данным элементом, начиная с головы списка
         while (head != null && EqualityComparer<T>.Default.Equals(head.Data, element))
         {
             head = head.Next;
         }
 
-        // Если после удаления головы список стал пустым, выходим из метода
         if (head == null)
         {
             return;
         }
 
-        // Ищем и удаляем элементы в оставшейся части списка
         Node current = head;
         while (current.Next != null)
         {
@@ -228,27 +224,22 @@ public class CustomLinkedList<T>
 
     public void InsertBeforeFirstOccurrence(T existingElement, T newElement) // Задание 4.8
     {
-        // Проверяем, не является ли список пустым
         if (head == null)
         {
             Console.WriteLine("Список пуст. Невозможно вставить элемент.");
             return;
         }
-
-        // Если голова списка содержит искомый элемент, вставляем новый элемент в начало
         if (EqualityComparer<T>.Default.Equals(head.Data, existingElement))
         {
             AddToFront(newElement);
             return;
         }
 
-        // Ищем первое вхождение искомого элемента
         Node current = head;
         while (current.Next != null)
         {
             if (EqualityComparer<T>.Default.Equals(current.Next.Data, existingElement))
             {
-                // Вставляем новый элемент перед первым вхождением
                 Node newNode = new Node(newElement);
                 newNode.Next = current.Next;
                 current.Next = newNode;
@@ -257,35 +248,26 @@ public class CustomLinkedList<T>
 
             current = current.Next;
         }
-
-        // Если элемент не найден, выводим сообщение
         Console.WriteLine($"Элемент {existingElement} не найден в списке. Ничего не вставлено.");
     }
 
     public void AppendList(CustomLinkedList<T> listToAppend) // Задание 4.9
     {
-        // Проверяем, не является ли список, который мы добавляем, пустым
         if (listToAppend.head == null)
         {
             Console.WriteLine("Список для добавления пуст. Ничего не добавлено.");
             return;
         }
-
-        // Если наш список пуст, просто копируем в него список для добавления
         if (head == null)
         {
             CopyList(listToAppend);
             return;
         }
-
-        // Находим последний элемент нашего списка
         Node current = head;
         while (current.Next != null)
         {
             current = current.Next;
         }
-
-        // Копируем элементы из списка для добавления в конец нашего списка
         CopyList(listToAppend, current);
     }
 
@@ -319,14 +301,12 @@ public class CustomLinkedList<T>
 
         if (head == null)
         {
-            // Список пуст, второй список остается пустым, первый не изменяется
             return;
         }
 
         Node current = head;
         Node previous = null;
 
-        // Ищем первое вхождение числа в списке
         while (current != null && !EqualityComparer<T>.Default.Equals(current.Data, number))
         {
             previous = current;
@@ -335,46 +315,36 @@ public class CustomLinkedList<T>
 
         if (current == null)
         {
-            // Число не найдено в списке, второй список остается пустым, первый не изменяется
             return;
         }
 
-        // Разрываем связь между первым и вторым списком
         if (previous != null)
         {
             previous.Next = null;
         }
         else
         {
-            // Если первый элемент - искомое число, то обнуляем голову
             head = null;
         }
 
-        // Заполняем второй список начиная с найденного числа
         secondList.head = current;
-
-        // Первый список остается без изменений
     }
     public void DuplicateList() // Задание 4.11
     {
         if (head == null)
         {
-            // Нечего удваивать, список пуст
             return;
         }
 
-        // Копируем текущий список
         CustomLinkedList<T> copy = CopyList();
         copy.Reverse();
 
-        // Ищем конец текущего списка
         Node current = head;
         while (current.Next != null)
         {
             current = current.Next;
         }
 
-        // Добавляем к текущему списку копию списка
         current.Next = copy.head;
     } 
     public void SwapElements(T element1, T element2) // Задание 4.12
@@ -446,8 +416,6 @@ public class CustomLinkedList<T>
         }
         return false;
     }
-    // Добавьте остальные методы для выполнения заданий
-    // ...
     public void Print()
     {
         Node current = head;
