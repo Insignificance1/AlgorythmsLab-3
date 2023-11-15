@@ -112,16 +112,27 @@ namespace AlgorythmsLab_3.Utilities
                 switch (choice)
                 {
                     case 1:
-                        // Реализация задания 1 для динамических структур данных (Список)
+                        Console.Clear();
+                        ExampleList.ExecuteList();
+                        MenuManager.ReturnToMainMenu("DinamicStructure");
+
                         break;
                     case 2:
-                        // Реализация задания 2 для динамических структур данных (Стек)
+
+                        Console.Clear();
+                        ExampleStack.ExcuiteStack();
+                        MenuManager.ReturnToMainMenu("DinamicStructure");
+
                         break;
                     case 3:
-                        // Реализация задания 3 для динамических структур данных (Очередь)
+                        Console.Clear();
+                        TaskManagementSystem.QueueSource();
+                        MenuManager.ReturnToMainMenu("DinamicStructure");
                         break;
                     case 4:
-                        // Реализация задания 4 для динамических структур данных (Дерево)
+                        Console.Clear();
+                        BinarySearchTree.ExampleTree();
+                        MenuManager.ReturnToMainMenu("DinamicStructure");
                         break;
                     default:
                         Console.WriteLine("Введите номер от 1 до 4!");

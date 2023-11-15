@@ -132,5 +132,21 @@ namespace AlgorythmsLab_3.Utilities
 
             return myList;
         }
+        public static List<int> GenerateRandomList(int size)
+        {
+            List<int> myList = new List<int>();
+            Random random = new Random();
+
+            for (int i = 0; i < size; i++)
+            {
+                myList.Add(random.Next(1, 11));
+            }
+
+            return myList;
+        }
+
+        
     }
+
+
 }
